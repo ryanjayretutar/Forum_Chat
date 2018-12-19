@@ -1,0 +1,34 @@
+
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+nav img {
+	border-radius: 100%;
+}
+
+section#navs {
+	letter-spacing: 1px;
+	line-height: 2rem;
+}
+
+#carouselExampleIndicators{
+ 
+}
+
+#fixa{  
+
+ position: absolute;
+ z-index: 10;
+ background-color: black;
+ opacity: 0.8;
+ float: right;
+ height:500px;
+ width: 30%;
+ padding: 20px;
+}
