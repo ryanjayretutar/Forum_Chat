@@ -143,6 +143,11 @@ div .display-5 {
  	background-size: cover;
  }
 
+  #categories {
+ 	background: url(../images/sky.jpg) center center no-repeat;
+ 	background-size: cover;
+ }
+
  .about-text {
  	background: rgba(0,0,0,0.8);
  	color: white;
@@ -171,6 +176,147 @@ div .display-5 {
 		float: left;
 		display: inline-block;*/
 	}
+}
+@media(max-width: 1200px){
+	#team .card{
+			min-width: 45%;
+			margin-bottom: 5px;
+		}
+	}
 
+.gal-item{
+	overflow: hidden;
+	padding: 8px;
+}
+.gal-item .box{
+	height: 100%;
+	overflow: hidden;
+}
+.box img{
+	height: 100%;
+	width: auto;
+	object-fit:cover;
+}
+
+.hovereffect {
+width:100%;
+height:100%;
+float:left;
+overflow:hidden;
+position:relative;
+text-align:center;
+cursor:default;
+}
+
+.hovereffect img {
+display:block;
+position:relative;
+-webkit-transition:all .4s linear;
+transition:all .4s linear;
+}
+
+.hovereffect:hover img {
+-ms-transform:scale(1.2);
+-webkit-transform:scale(1.2);
+transform:scale(1.2);
+}
+
+#cover {
+	background: url(../images/tb.jpg) center center no-repeat;
+	background-size: cover;
+	color: white;
+	height: 100vh;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	}	
+
+	#cover.contact{
+		height: 70vh;
+	} 
+
+/*h1, p{
+	color: white;
+}
+*/
+#cover-caption {
+	width: 100%;
+}
+
+.dark {
+	background: rgba(0,0,0,0.6);
+ 	color: white;
+	padding: 0.5rem;
+ 	border-radius: 5px;
+ 	position: absolute;
+ 	bottom: 0;
+}
+
+.column-2 .dark {
+
+	background: rgba(0,0,0,0.75);
+}
+
+.sidegal .row {
+	height: 150px;
+	position: relative;
+}
+
+#contact{
+  background-color: rgba(21,21,21,0.8);
+  letter-spacing: 2px;
+  }
+#contact a{
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+
+@media (max-width: 575.98px) {
+
+  #contact{padding-bottom: 800px;}
+  #contact .maps iframe{
+    width: 100%;
+    height: 450px;
+  }
+ }
+
+
+@media (min-width: 576px) {
+
+   #contact{padding-bottom: 800px;}
+
+   #contact .maps iframe{
+     width: 100%;
+     height: 450px;
+   }
+ }
+
+@media (min-width: 768px) {
+
+  #contact{padding-bottom: 350px;}
+
+  #contact .maps iframe{
+    width: 100%;
+    height: 850px;
+  }
+}
+
+@media (min-width: 992px) {
+  #contact{padding-bottom: 200px;}
+
+   #contact .maps iframe{
+     width: 100%;
+     height: 700px;
+   }
+}
+
+
+#author a{
+  color: #fff;
+  text-decoration: none;
+    
 }
 
