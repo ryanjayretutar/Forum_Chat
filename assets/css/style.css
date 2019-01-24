@@ -6,6 +6,7 @@
 html, body {
 	height: 100%;
 	font-family: 'Raleway', sans-serif;
+	
 }
 nav img {
 	border-radius: 100%;
@@ -586,4 +587,17 @@ a[data-toggle="collapse"] {
 	-webkit-box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
 -moz-box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
 box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
+}
+
+.bg-top {
+	background: #6d7fcc;
+}
+
+.border-3 {
+    border-width:3px !important;
+    color: #6d7fcc;
+}
+
+.bg-cloud {
+	background: #ecf0f1;
 }

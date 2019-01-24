@@ -9,13 +9,14 @@ $(document).ready(function () {
         // });
         // $('#sidebar').hasClass('active') ? $(".navbar-brand").show() : $(".navbar-brand").hide();
     });
-    	$(document).ready(function(){
-		$('#edit').editable({
-			inlineMode: false
-		});
-		});
+    	
+			$('#editor').jqte();
+		
+			$('.jqte_editor').css({ height: '300px' });
 
-
+			$('.jqte_toolbar').css({ height: '50px' });
+			$('.jqte_tool_label').css({ height: '20px' });
+            $('.selection').selectpicker();
 
 });
 

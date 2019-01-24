@@ -9,10 +9,11 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Font -->
-    <link href="assets/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/jquery-te-1.4.0.css" rel="stylesheet" type="text/css">
     
     <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="assets/js/froala_editor.min.js"></script>
+    <script src="assets/js/jquery-te-1.4.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 
     <script src="assets/js/script.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
