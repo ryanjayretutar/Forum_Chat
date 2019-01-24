@@ -601,3 +601,10 @@ box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
 .bg-cloud {
 	background: #ecf0f1;
 }
+.termsx {
+	overflow-y: scroll;
+	height: 300px;
+	width: 100%;
+	border: 1px solid #000;
+	padding: 10px;
+}
