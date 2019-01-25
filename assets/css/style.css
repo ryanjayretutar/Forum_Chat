@@ -97,10 +97,10 @@ div .display-5 {
     overflow: hidden;
     }
 .navbar {
-    position:absolute;
-    top:0;
+/*    position:absolute;
+    top:0;*/
     z-index:10;
-    background: rgb(0, 0, 0); opacity: 0.7;
+    background: rgb(0, 0, 0); opacity: 1;
     width:100%;
 }
 
@@ -233,7 +233,7 @@ transform:scale(1.2);
 	background: url(../images/tb.jpg) center center no-repeat;
 	background-size: cover;
 	color: white;
-	height: 50vh;
+	height: 40vh;
 	text-align: center;
 	display: flex;
 	align-items: center;
@@ -607,4 +607,9 @@ box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
 	width: 100%;
 	border: 1px solid #000;
 	padding: 10px;
+}
+
+.error {
+  color: red;
+  margin-left: 5px;
 }
