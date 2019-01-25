@@ -12,7 +12,17 @@
 						"email"=>$_POST['email'],
 						"title"=>"newbie",
 						"status"=>"inactive");
-		$user->insert_data("user", $credentials, $firstName, $lastName, $birth_date);
+		if($user->check_duplicate($username, $email)){
+			$user->insert_data("user", $credentials);
+			$info = array("user_id"=>$user->get_last_id(),
+							"first_name"=>$_POST['firstName'],
+							"last_name"=>$_POST['lastName'],
+							"birth_date"=>$_POST['birth_date']);
+			$user->insert_data("user_info", $info);
+		}else{
+			echo "Duplicate values";
+		}
+		
 	}
 
   ?>

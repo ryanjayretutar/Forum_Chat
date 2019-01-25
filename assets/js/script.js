@@ -1,41 +1,41 @@
 $(document).ready(function () {
 
-     $('#register').submit(function(e) {
-                e.preventDefault();
-                var user_name = $('#username').val();
-                var first_name = $('#firstName').val();
-                var birth_date = $('#demo-desktop').val();
-                var last_name = $('#lastName').val();
-                var email = $('#email').val();
-                var password = $('#password').val();
+     // $('#register').submit(function(e) {
+     //            e.preventDefault();
+     //            var user_name = $('#username').val();
+     //            var first_name = $('#firstName').val();
+     //            var birth_date = $('#demo-desktop').val();
+     //            var last_name = $('#lastName').val();
+     //            var email = $('#email').val();
+     //            var password = $('#password').val();
 
-                $(".error").remove();
+     //            $(".error").remove();
 
-                if (first_name.length < 1) {
-                  $('#firstName').parent().after('<span class="error">This field is required</span>');
-                }
-                if (last_name.length < 1) {
-                  $('#lastName').parent().after('<span class="error">This field is required</span>');
-                }
-                 if (user_name.length < 1) {
-                  $('#username').parent().after('<span class="error">This field is required</span>');
-                }
-                if (birth_date.length < 1) {
-                  $('#birth_date').parent().after('<span class="error">This field is required</span>');
-                }
-                if (email.length < 1) {
-                  $('#email').parent().after('<span class="error">This field is required</span>');
-                } else {
-                  var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
-                  var validEmail = regEx.test(email);
-                  if (!validEmail) {
-                    $('#email').parent().after('<span class="error">Enter a valid email</span>');
-                  }
-                }
-                if (password.length < 8) {
-                  $('#password').parent().after('<span class="error">Password must be at least 8 characters</span>');
-                }
-              });
+     //            if (first_name.length < 1) {
+     //              $('#firstName').parent().after('<span class="error">This field is required</span>');
+     //            }
+     //            if (last_name.length < 1) {
+     //              $('#lastName').parent().after('<span class="error">This field is required</span>');
+     //            }
+     //             if (user_name.length < 1) {
+     //              $('#username').parent().after('<span class="error">This field is required</span>');
+     //            }
+     //            if (birth_date.length < 1) {
+     //              $('#birth_date').parent().after('<span class="error">This field is required</span>');
+     //            }
+     //            if (email.length < 1) {
+     //              $('#email').parent().after('<span class="error">This field is required</span>');
+     //            } else {
+     //              var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+     //              var validEmail = regEx.test(email);
+     //              if (!validEmail) {
+     //                $('#email').parent().after('<span class="error">Enter a valid email</span>');
+     //              }
+     //            }
+     //            if (password.length < 8) {
+     //              $('#password').parent().after('<span class="error">Password must be at least 8 characters</span>');
+     //            }
+     //          });
     
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
