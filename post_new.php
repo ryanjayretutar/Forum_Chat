@@ -1,5 +1,24 @@
 <?php 
 	include "include/header.php";
+	session_start(); 
+	$_SESSION['url'] = $_SERVER['REQUEST_URI']; 
+	include_once "config/user.php";
+	$user->session_check();
+	if(isset($_POST['submit'])){
+		$thread = array("subject"=>$_POST['subject'],
+						"category"=>$_POST['category'],
+						"user_id"=>$_SESSION['id']);
+		$user->insert_data("thread", $thread);
+		$post = array("content"=>$_POST['content'],
+						"user_id"=>$_SESSION['id'],
+						"thread_id"=>$user->get_last_id(),
+						"status"=>"Waiting for Approval");
+		$user->insert_data("post", $post);
+
+
+		
+		
+	}
  ?>
  
 <body class="bg-cloud">
@@ -16,26 +35,42 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="latest.html">Latest Games</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link" href="news.html">News</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact</a>
-              </li>
-            </ul>
-           
-          </div>
-        </nav>
+			            <ul class="nav nav-tabs mr-auto">
+						   <li class="nav-item ">
+			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+			              </li>
+			              <li class="nav-item">
+			                <a class="nav-link" href="latest.html">Latest Posts</a>
+			              </li>
+			               <li class="nav-item">
+			                <a class="nav-link" href="news.html">Trending</a>
+			              </li>
+			              <li class="nav-item">
+			                <a class="nav-link" href="about.html">My Threads</a>
+			              </li>
+			              <li class="nav-item">
+			                <a class="nav-link" href="contact.html">Contact</a>
+			              </li>
+						</ul>
+						<form class="form-inline my-2 my-lg-0">
+							<ul class="nav nav-tabs mr-auto">
+						   <li class="nav-item ">
+						   
+			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
+			              </li>
+			              <li class="nav-item">
+			                <a class="nav-link" href="latest.html">Register</a>
+			              </li>
+			               <li class="nav-item">
+			                <a class="nav-link" href="Logout">Logout</a>
+			              </li>
+			            
+						</ul>
+					     
+					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+					    </form>
+			           
+			          </div>        </nav>
 				<section id="cover">
 			      <div id="cover-caption">
 			        <div class="container">
@@ -67,30 +102,32 @@
 			    		<div class="row m-2 thread">
 			    			<div class="col-lg-9">
 			    				<h3 class="m-2">Create New Thread</h3>
-			    				<form action="" class="p-5">
+			    				<form action="" class="p-5" method="post">
 			    					<div class="form-group ">
 			    						<label for=""><h5>Select Thread Category</h5></label>
 			    						<div class="row">
-			    							 <select class="form-control col-lg-6" id="exampleFormControlSelect1">
-									      <option>1</option>
-									      <option>2</option>
-									      <option>3</option>
-									      <option>4</option>
-									      <option>5</option>
+			    					  <select class="form-control col-lg-6" name="category">
+			    					  	<?php 
+
+			    							$category = $user->fetch_data("category");
+			    							foreach($category as $row){
+			    						 ?>
+									      <option value="<?php echo $row['category_name']; ?>"><?php echo $row['category_name']; ?></option>
+									     <?php } ?>
 									    </select>
 			    						</div>
 			    					</div>
 			    					<div class="form-group mt-2">
 			    						<label for=""><h5>Title</h5></label>
 			    						<div class="row">
-			    							 <input type="text" class="form-control col-lg-6" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+			    							 <input type="text" class="form-control col-lg-6" id="exampleInputEmail1" name="subject" aria-describedby="emailHelp" placeholder="Enter title">
 			    						</div>
 			    					</div>
 			    					<div class="form-group mt-2">
 
-			    						<div class="row">
+			    						<div class="row">	
 			    							<div class="col-lg-12">
-			    								<textarea class="form-control" id="editor" aria-describedby="emailHelp" placeholder="Enter title"></textarea>
+			    								<textarea class="form-control" id="editor" aria-describedby="emailHelp" placeholder="Enter initial content" name="content"></textarea>
 			    							</div>
 			    							 
 			    						</div>
@@ -112,9 +149,7 @@
 			    					<div class="form-group mt-5">
 			    						<div class="row">
 			    							<div class="offset-lg-8 col-lg-4 form-inline">
-						    					<button type="button" class="btn btn-primary form-control mr-2" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="fas fa-share-square"></i>
-												  Submit
-												</button>
+						    					<input type="submit" name="submit" class="btn btn-primary form-control mr-2" value='Submit'>
 												<button type="button" class="btn btn-primary form-control" data-toggle="button" aria-pressed="false" autocomplete="off"><i class="far fa-eye"></i>
 												  Preview
 												</button>

@@ -19,8 +19,6 @@
 							"last_name"=>$_POST['lastName'],
 							"birth_date"=>$_POST['birth_date']);
 			$user->insert_data("user_info", $info);
-		}else{
-			echo "Duplicate values";
 		}
 		
 	}
@@ -55,26 +53,39 @@
 			              <span class="navbar-toggler-icon"></span>
 			          </button>
 
-			          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			            <ul class="nav nav-tabs mr-auto">
 						   <li class="nav-item ">
 			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
 			              </li>
 			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Games</a>
+			                <a class="nav-link" href="latest.html">Latest Posts</a>
 			              </li>
 			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">News</a>
+			                <a class="nav-link" href="news.html">Trending</a>
 			              </li>
 			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">About</a>
+			                <a class="nav-link" href="about.html">My Threads</a>
 			              </li>
 			              <li class="nav-item">
 			                <a class="nav-link" href="contact.html">Contact</a>
 			              </li>
 						</ul>
 						<form class="form-inline my-2 my-lg-0">
-					      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<ul class="nav nav-tabs mr-auto">
+						   <li class="nav-item ">
+						   
+			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
+			              </li>
+			              <li class="nav-item">
+			                <a class="nav-link" href="latest.html">Register</a>
+			              </li>
+			               <li class="nav-item">
+			                <a class="nav-link" href="Logout">Logout</a>
+			              </li>
+			            
+						</ul>
+					     
 					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
 					    </form>
 			           
