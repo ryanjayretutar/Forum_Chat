@@ -132,6 +132,7 @@ div .display-5 {
 .wrappers {
     display: flex;
     width: 100%;
+    height: 89vh;
     align-items: stretch;
 }
 
@@ -481,12 +482,11 @@ transform:scale(1.2);
 	}
 
 	#sidebar {
-    min-width: 300px;
-    max-width: 300px;
-    min-height: 100vh;
-    background: #7386D5;
+    min-height: 100%;
+    background: #3498db;
     color: #fff;
     transition: all 0.3s;
+    height: 99%; overflow-y: scroll ;	
 	}
 
 	#sidebar.active {
@@ -619,4 +619,11 @@ box-shadow: -1px -1px 18px -1px rgba(0,0,0,0.75);
 .error {
   color: red;
   margin-left: 5px;
+}
+.bg-belize{
+	background: #3498db;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }

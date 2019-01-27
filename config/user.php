@@ -100,6 +100,33 @@
 			return $array;
 		}
 
+		public function fetch_query($table, $where){
+			$sql = "";
+			$condition = "";
+			foreach ($where as $key => $value) {
+				$condition .= $key . "='" . $value . "' AND ";
+			}
+			$condition = substr($condition, 0, -5);
+			$sql .= "SELECT * FROM " . $table . " WHERE ". $condition;
+			$query = mysqli_query($this->con, $sql);
+			if($query){
+				return $sql;
+			}
+			return false;
+			
+		}
+
+		public function union($sql1, $sql2){
+			$sql = $sql1 . "UNION " . $sql2 . " ORDER BY timestamp";
+			$query = mysqli_query($this->con, $sql);
+			while($row = mysqli_fetch_assoc($query)){
+				$array[] = $row;
+			}
+			return $array;
+		}
+
+
+
 	} //End of User Clas
 	$user = new User();
  ?>

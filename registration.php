@@ -20,7 +20,7 @@
 							"birth_date"=>$_POST['birth_date']);
 			$user->insert_data("user_info", $info);
 		}
-		
+			
 	}
 
   ?>
@@ -92,8 +92,8 @@
 			          </div>
 				</nav>
 
-
-			    <section id="register">
+				<form action="" method="post" id="register">
+			    <section class="register">
 			    	<div class="container-fluid mt-5">
 			    		<div class="row">
 			    			<div class="col-lg-12">
@@ -122,37 +122,37 @@
 			    					<div class="container">
 			    						<div class="row mx-5 mt-5">
 			    							<div class="col-lg-12">
-			    								<form action="" method="post" id="register">
+			    								
 					    							<div class="form-group row p-2">
-													    <label for="username" class="col-sm-2 col-form-label">Username</label>
+													    <label for="username control-label" class="col-sm-2 col-form-label">Username</label>
 													    <div class="col-sm-6">
 													      <input type="text" class="form-control" id="username" name="username" >
 													    </div>
 													  </div>
 													  <hr>
 													  <div class="form-group row p-2">
-													    <label for="password" class="col-sm-2 col-form-label">Password</label>
+													    <label for="password control-label" class="col-sm-2 col-form-label">Password</label>
 													    <div class="col-sm-6">
 													      <input type="password" class="form-control" name="password" id="password">
 													    </div>
 													  </div>
 													  <div class="form-group row p-2">
-													    <label for="confirmPass" class="col-sm-2 col-form-label">Confirm Password</label>
+													    <label for="confirmPass control-label" class="col-sm-2 col-form-label">Confirm Password</label>
 													    <div class="col-sm-6">
 													      <input type="password" class="form-control" id="confirmPass" name="confirmPass">
 													    </div>
 													  </div>
-													  <hr>
+														  <hr>
 													  <div class="form-group row p-2">
-													    <label for="email" class="col-sm-2 col-form-label">Email Address</label>
+													    <label for="email" class="col-sm-2 col-form-label control-label">Email Address</label>
 													    <div class="col-sm-6">
-													      <input type="text" class="form-control" id="email" name="email">
+													      <input type="email" class="form-control" id="email" name="email">
 													    </div>
 													  </div>
 													  <div class="form-group row p-2">
-													    <label for="confirmEmail" class="col-sm-2 col-form-label">Confirm Email</label>
+													    <label for="confirmEmail" class="col-sm-2 col-form-label control-label">Confirm Email</label>
 													    <div class="col-sm-6">
-													      <input type="text" class="form-control" id="confirmEmail" name="confirmEmail">
+													      <input type="email" class="form-control" id="confirmEmail" name="confirmEmail">
 													    </div>
 													  </div>
 
@@ -169,20 +169,21 @@
 			    							<div class="col-lg-12">
 			    								
 					    							<div class="form-group row p-2">
-													    <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+													    <label for="firstName" class="col-sm-2 col-form-label control-label">First Name</label>
 													    <div class="col-sm-6">
 													      <input type="text" class="form-control" id="firstName" name="firstName">
+													      
 													    </div>
 													  </div>
 													  <div class="form-group row p-2">
-													    <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+													    <label for="lastName" class="col-sm-2 col-form-label control-label">Last Name</label>
 													    <div class="col-sm-6">
 													      <input type="text" class="form-control" id="lastName" name="lastName">
 													    </div>
 													  </div>
 													  <hr>
 													  <div class="form-group row p-2">
-													    <label for="date" class="col-sm-2 col-form-label">Birthdate</label>
+													    <label for="date" class="col-sm-2 col-form-label control-label">Birthdate</label>
 													    <div class="col-sm-6">
 										                        <input type="date" id="demo-desktop" name="birth_date" class="form-control" data-input-style="box" placeholder="Please Select..." />
 													    </div>
@@ -224,7 +225,7 @@
 
 			    								</div>
 			    								<div class="mt-3">
-								                    <label for="cb_rules_agree" class=""><input type="checkbox" name="agree" id="cb_rules_agree" tabindex="1" value="1"> <strong>I have read, and agree to abide by the theRPGSite rules.</strong></label>
+								                    <label for="cb_rules_agree" class="control-label"><input type="checkbox" name="agree" id="cb_rules_agree" tabindex="1" value="1"> <strong>I have read, and agree to abide by the theRPGSite rules.</strong></label>
 								                </div>	
 								                <div class="form-group mt-2">
 						    						<div class="row">
