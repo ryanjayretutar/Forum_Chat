@@ -14,6 +14,7 @@
     
     <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="assets/js/jquery-te-1.4.0.min.js"></script>
+    <!-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> -->
     <script type="text/javascript" src="assets/js/jquery.validate.js"></script>
 
     <script src="assets/js/mobiscroll.jquery.min.js"></script>
@@ -26,3 +27,4 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>RPGame</title>
   </head>
+

@@ -2,11 +2,28 @@
 	include "include/header.php";
 	session_start();
 	include_once "config/user.php";
+	$_SESSION['url'] = $_SERVER['REQUEST_URI']; 
+	if(isset($_POST['submit']) && !empty($_POST['comment'])){
+		$thread = array("content"=>$_POST['comment'],
+						"thread_id"=>$_POST['thread_id'],
+						"user_id"=>$_POST['user_id'],
+						"status"=>$_POST['status']);
+		$user->insert_data("post", $thread);
+			
+		
+	}
+
+	// if(isset($_POST['reply_sub']) && !empty($_POST['reply'])){
+	// 	$reply = array("content"=>$_POST['reply'],
+	// 					"post_id"=>$_POST['post_id'],
+	// 					"user_id"=>$_POST['user_id']);
+	// 	$user->insert_data("replies", $reply);
+	// }
 
  ?>
  
 <body class="bg-cloud">
-	<div class="bg-light">
+	<div class="	">
 		<section id="cover">
 			      <div id="cover-caption">
 			        <div class="container">
@@ -32,40 +49,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			            <ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Posts</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">Trending</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">My Threads</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="contact.html">Contact</a>
-			              </li>
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-						   
-			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Register</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="Logout">Logout</a>
-			              </li>
-			            
-						</ul>
-					     
-					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					    </form>
+			            <?php include "include/nav.php"; ?>
 			           
 			          </div>
         </nav>
@@ -87,13 +71,14 @@
 			    		</div>
 
 			    		<?php 
+
+			    		if(isset($_GET['thread_id'])){
 			    			$where2 = array("id"=>$_GET['thread_id']);
 			    			$thread = $user->fetch_data_byId("thread",$where2);
 			    			$where = array("id"=>$thread['user_id']);
 			    			$info = $user->fetch_data_byId("user",$where);
-			    			$where3 = array("user_id"=>$thread['user_id']);
-			    			$data = $user->fetch_data_byId("user_info",$where3);
 			    			
+			    			// $data = $user->fetch_data_byId("user_info",$where3);
 			    		 ?>
 			    		<div class="row m-5">
 			    			<div class="col-lg-12">
@@ -107,12 +92,22 @@
 			    					<span>0</span>
 			    				</div>
 			    				<div class="border border-dark"></div>
+			    				<?php 
+			    					$where3 = array("thread_id"=>$_GET['thread_id']);
+			    					$post = $user->fetch_data_Many("post", $where3);
+			    					foreach($post as $comments){
+			    						$postOf = array('id' => $comments['user_id'] );
+			    						$post_user =  $user->fetch_data_byId("user", $postOf);
+			    						$userInfo = array('user_id' => $comments['user_id']);
+			    						$info =  $user->fetch_data_byId("user_info", $postOf);
+
+			    				 ?>
 			    				<div>
 			    					<div class=" mt-3  bg-top" >
 			    						<div class="text-white justify-content-between d-flex pl-3 row-hl">
 			    							<small class="text-white justify-content-between d-flex pl-3 row-hl">
 				    							<i class="fas fa-calendar item-hl align-self-center pr-2"></i>
-				    							<span class="item-hl" style="font-size: 16px;">Jan. 10, 2019</span>
+				    							<span class="item-hl" style="font-size: 16px;"><?php echo $comments['created_at']; ?></span>
 			    							</small>
 			    							<span class="item-hl" style="font-size: 16px;">#1</span>
 			    						</div>
@@ -125,147 +120,97 @@
 											</div>											
 				    					</div>
 				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small><?php echo $data['first_name'] . " " . $data['last_name']; ?></small>
-											<small class="text-muted">Thread Creator</small>
+											<small><?php echo $info['first_name'] . " " . $info['last_name']; ?></small>
+											<small class="text-muted"><?php echo $post_user['title']; ?></small>
 										</div>
 			    					</div>
 			    					<div class="item-hl text-left w-75 px-3 pt-3">
 			    						<div class="d-flex flex-column row-hl">
 			    							<small class="text-muted d-flex flex-row row-hl">
 			    							<i class="fas fa-clock item-hl"></i>
-			    							<span class="item-hl" style="font-size: 16px;">Jan. 10, 2019</span>
+			    							<span class="item-hl" style="font-size: 16px;"><?php echo $comments['created_at']; ?></span>
 				    						</small>
+				    						<!-- <h3>
+				    							<?php 
+				    							echo $comments['subject'];
+				    						 ?> -->
+				    						</h3>
 				    						<h6>
-				    							<?php $post = array("thread_id"=> $_GET['thread_id']);
-				    							  $list = $user->fetch_data_byId("post", $post);
-				    							  echo $list['content'];
+				    						<?php 
+				    							echo $comments['content'];
 				    						 ?>
-				    						</h6>
-				    						
-				    						
+				    						</h6>	
 			    						</div>
-			    						
-			    						<div class="mt-2 d-flex justify-content-between flex-row row-hl">
-			    							<div class="item-hl">
-			    								<i class="fas fa-warning"></i>
-			    								<span>Report</span>
-			    							</div>
-			    							<div class="item-hl">
-			    								<i class="fas fa-comments"></i>
-			    								<span>Reply</span>
-			    							</div>
-			    							
-			    						</div>
-			    						
-			    					</div>
-			    			</div>
+			    						<div class="mt-2 d-flex flex-column row-hl">
+			    							<div class="item-hl my-3 align-self-end"><button type="button" class="btn btn-sm btn-dark" data-toggle="collapse" data-target="#reply<?php echo $comments['id'];  ?>" aria-expanded="false" aria-controls="reply3"><i class="fa fa-reply">&nbsp;</i>Reply</button></div>
+											<div class="item-hl">
+												<div class="collapse" id="reply<?php echo $comments['id'];  ?>">
+												<!-- <?php 
 
-			    				</div>
-			    			<div>
-			    				<div class=" mt-3  bg-top" >
-			    					<div class="text-white justify-content-between d-flex pl-3 row-hl">
-			    							<small class="text-white justify-content-between d-flex pl-3 row-hl">
-			    							<i class="fas fa-calendar item-hl align-self-center pr-2"></i>
-			    							<span class="item-hl" style="font-size: 16px;">Jan. 10, 2019</span>
-
-			    						</small>
-
-			    							<span class="item-hl" style="font-size: 16px;">#1</span>
-			    					</div>
-			    				</div>
-			    				<div class="d-flex  flex-row justify-content-around row-hl thread">
-			    					<div class="item-hl w-25 p-3">
-			    						<div class="d-flex flex-row row-hl justify-content-center">
-											<div class="profiles item-hl">
-												<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
-											</div>											
-				    					</div>
-				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small>John Doe Smith Jr.</small>
-											<small class="text-muted">Moderator</small>
-										</div>
-			    					</div>
-			    					<div class="item-hl text-left w-75 p-3">
-			    						<div class="d-flex flex-column row-hl">
-				    						<h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus laudantium labore fugiat eligendi, numquam veritatis ut tempore quibusdam unde a! Ea quos, officia minima, veniam ex quo nihil reprehenderit non.</h6>
-
-				    					</div>
-				    					<div class="mt-2 d-flex justify-content-between  flex-row row-hl ">
-			    							<div class="item-hl">
-			    								<i class="fas fa-warning"></i>
-			    								<span>Report</span>
-			    							</div>
-			    							<div class="item-hl">
-			    								<i class="fas fa-comments"></i>
-			    								<span>Reply</span>
-			    							</div>
-			    							
-			    						</div>
-
-
-
-			    					</div>
-			    			</div>
-			    			</div>	
-			    			
-			    			<div class="d-flex  flex-row justify-content-around row-hl mt-3 thread">
-			    					<div class="item-hl w-25 p-3">
-			    						<div class="d-flex flex-row row-hl justify-content-center">
-											<div class="profiles item-hl">
-												<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
-											</div>											
-				    					</div>
-				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small>John Doe Smith Jr.</small>
-											<small class="text-muted">Moderator</small>
-										</div>
-			    					</div>
-			    					<div class="item-hl text-left w-75 p-3">
-			    						<h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus laudantium labore fugiat eligendi, numquam veritatis ut tempore quibusdam unde a! Ea quos, officia minima, veniam ex quo nihil reprehenderit non.</h6>
-			    					</div>
-			    			</div>
-			    			<div class="d-flex  flex-row justify-content-around row-hl mt-3 thread">
-			    					<div class="item-hl w-25 p-3">
-			    						<div class="d-flex flex-row row-hl justify-content-center">
-											<div class="profiles item-hl">
-												<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
-											</div>											
-				    					</div>
-				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small>John Doe Smith Jr.</small>
-											<small class="text-muted">Moderator</small>
-										</div>
-			    					</div>
-			    					<div class="item-hl text-left w-75 p-3">
-			    						<h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus laudantium labore fugiat eligendi, numquam veritatis ut tempore quibusdam unde a! Ea quos, officia minima, veniam ex quo nihil reprehenderit non.</h6>
-
-			    					</div>
-			    			</div>
-			    			<div class="d-flex  flex-row justify-content-around row-hl mt-3 thread">
-			    					<div class="item-hl w-25 p-3">
-			    						<div class="d-flex flex-row row-hl justify-content-center">
-											<div class="profiles item-hl">
-												<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
-											</div>											
-				    					</div>
-				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small>John Doe Smith Jr.</small>
-											<small class="text-muted">Moderator</small>
-										</div>
-			    					</div>
-			    					<div class="item-hl text-left w-75 p-3">
-			    						<h6>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus laudantium labore fugiat eligendi, numquam veritatis ut tempore quibusdam unde a! Ea quos, officia minima, veniam ex quo nihil reprehenderit non.</h6>
-			    					</div>
-			    			</div>
-
-
-
-
+													$reply = array("post_id"=>$comments['id']);
+													$replies = $user->fetch_data_Many("replies", $reply);
+													foreach($replies as $rep){
+														echo $rep['content'];
+													}
+												 ?> -->
+												  <div class="card card-body border-0">
 									
+												   	<form action="" method="post">
+													  <div class="form-group">					
+													  <!-- <input type="hidden" name="post_id" value="<?php echo $comments['id']; ?>">
+													   <input type="hidden" name="user_id" value="<?php echo $post_user['id']; ?>">	 -->			   
+													    <textarea class="form-control" id="exampleFormControlTextarea1" name="reply" rows="3"></textarea>
+													  </div>
+													  <div class="form-group float-right">											   
+													    <input type="submit" name="reply_sub" class="btn btn-dark" value="Submit">
+													  </div>										
+													</form>
+												  </div>
+												</div>
+											</div>
+			    						</div>
+			    					</div>
+			    				</div>
+			    			</div>	
+
+
+
+			    			<?php } ?>					
 						</div>
 			    </section>
 
-			    <section id="comments" >
+			    <?php 
+
+
+			    		}else{
+
+
+			    	
+
+			     ?>
+
+
+			     <section id="error_found">
+			     	<div class="container-fluid mt-5">
+			     		<h1 class="display-4">404 Page not found	</h1>
+			     	</div>
+			     </section>
+
+
+				<?php 
+
+						}
+					if($user->get_session()){
+						$log_id = array('id' => $_SESSION['id'] );
+						$logged = $user->fetch_data_byId("user", $log_id);
+						$log_info = array('user_id' => $_SESSION['id'] );
+						$userOf = $user->fetch_data_byId("user_info", $log_info);
+
+
+				 ?>
+
+					
+				<section id="comments" >
 			   		<div class="container-fluid mt-5">
 			    		<div class="row m-5">
 			    			<div class="col-lg-12">
@@ -277,21 +222,26 @@
 											</div>											
 				    					</div>
 				    					<div class="d-flex flex-column align-items-center row-hl">
-											<small>John Doe Smith Jr.</small>
-											<small class="text-muted">Moderator</small>
+											<small><?php echo $userOf['first_name'] . " " . $userOf['last_name'] ; ?></small>
+											<small class="text-muted"><?php echo $logged['title']; ?></small>
 										</div>
 			    					</div>
 			    					<div class="item-hl text-left w-75 p-1 ">
+
 			    						<h6>Post your comments here</h6>
-			    						<textarea name="" id="editor"></textarea>
-			    						<div class="mt-2 d-flex justify-content-end flex-row row-hl">
-			    							
-			    							<div class="item-hl">
-			    								<button type="button" class="btn btn-sm btn-primary"><i class="fas fa-comments"></i>
-			    								<span>Reply</span></button>
-			    							</div>
-			    							
-			    						</div>
+			    						<form action="" method="post" name="com">
+			    							<textarea name="comment" id="editor"></textarea>
+				    						<div class="mt-2 d-flex justify-content-end flex-row row-hl">
+				    							<input type="hidden" name="thread_id" value="<?php echo $_GET['thread_id'] ?>">
+				    							<input type="hidden" name="user_id" value="<?php echo $logged['id']; ?>">
+				    							<input type="hidden" name="status" value="Comment">
+				    							<div class="item-hl">
+				    								<input type="submit" onclick="return(submitReg());" id="comments" name="submit" class="btn btn-sm btn-primary" value="Reply">
+				    							</div>
+				    							
+				    						</div>
+			    						</form>
+			    						
 			    					</div>
 			    				</div>
 									
@@ -299,11 +249,43 @@
 						</div>
 					</div>
 				</section>
+
+
+			<?php }else{ ?>
+
+							 <div class="container-fluid">
+					<div class="row m-5">
+						<div class="col-lg-6 offset-lg-6">
+							<h6>You must be logged in to post comments or replies.
+
+							<a href="login.php" style="color: green">Login Here.</a>
+							</h6>
+						</div>
+					</div>
+				</div>
+			    
+
+
+			<?php
+			} ?>
 			    
 		</div>
 	</div>
 
 
+<script>
+
+		function submitReg(){
+			var form = document.com;
+			if(form.comment.value == ""){
+				alert("Enter a comment before posting");
+				return false;
+			}
+
+		}
+		
+
+</script>
 <?php 
 	include "include/footer.php";
  ?>

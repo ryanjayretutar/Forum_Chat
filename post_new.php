@@ -24,53 +24,7 @@
 <body class="bg-cloud">
 	<div class="bg-light">
 		 <div id="contents">
-			 <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-          <a class="navbar-brand" href="#">
-            RP
-            <img src="assets/images/g-logo.jpg" width="30" height="30" class="d-inline-block" alt="" >
-            ame
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			            <ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Posts</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">Trending</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">My Threads</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="contact.html">Contact</a>
-			              </li>
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-						   
-			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Register</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="Logout">Logout</a>
-			              </li>
-			            
-						</ul>
-					     
-					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					    </form>
-			           
-			          </div>        </nav>
+			 
 				<section id="cover">
 			      <div id="cover-caption">
 			        <div class="container">
@@ -84,6 +38,18 @@
 			        </div>
 			      </div>
 			    </section>
+			    <nav class="navbar navbar-expand-lg navbar-dark bg-top" >
+          <a class="navbar-brand" href="#">
+            RP
+            <img src="assets/images/g-logo.jpg" width="30" height="30" class="d-inline-block" alt="" >
+            ame
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			              <?php include "include/nav.php"; ?>       </nav>
 
 			    <section id="create_post">
 			    	<div class="container-fluid mt-5">

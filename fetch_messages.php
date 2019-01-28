@@ -42,12 +42,13 @@
 					<?php if($messages['to_user_id'] == $_SESSION['id'] ){ ?>
 					<div class="flex-row d-flex row-hl justify-content-start">
  						<div class="profile item-hl mr-3" >
-							<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
+							<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">	
 						</div>
 						<div class="item-hl align-self-center">
 							<div class="bg-top p-2 text-light" style="border-radius: 50px; font-size: 14px;">
 								<?php echo $messages['chat_message']; ?>
 							</div>
+							<p class="text-muted" style="font-size: 12px;"><?php echo $messages["timestamp"]; ?></p>
 						</div>	
 					</div>
 
@@ -55,9 +56,10 @@
 					<div style="width: 100%;">
 						<div class="flex-row d-flex row-hl justify-content-end">	
 							<div class="item-hl align-self-center">
-								<div class="bg-top p-2 text-light" style="border-radius: 50px; font-size: 14px;">
+								<div  class="bg-top p-3 text-light from" style="border-radius: 50px; font-size: 14px; max-width: 300px; line-height: 150%;word-wrap: break-word; ">
 									<?php echo $messages['chat_message']; ?>
 								</div>
+								<p class="text-muted" style="font-size: 12px;"><?php echo $messages["timestamp"]; ?></p>
 							</div>	
 							<div class="profile item-hl mr-3" >
 								<img class="avatar" src="http://demo.powowbox.com/powowbox/avatar_demo/Jane_0001.png" alt="">
@@ -76,5 +78,6 @@
 			}
 				
 			 ?>
+
 
 		

@@ -2,6 +2,7 @@
 	include "include/header.php";
 	include "config/user.php";
 	session_start();
+	$_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 	
  ?>
   <body class="bg-cloud">
@@ -94,40 +95,7 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			            <ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Posts</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">Trending</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">My Threads</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="contact.html">Contact</a>
-			              </li>
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-						   
-			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Register</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="Logout">Logout</a>
-			              </li>
-			            
-						</ul>
-					     
-					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					    </form>
+			             <?php include "include/nav.php"; ?>
 			           
 			          </div>
         </nav>

@@ -12,6 +12,7 @@
 				if ($query) {
 					return true;
 				}
+				// echo $sql;
 		}
 		/*End of insert_data method*/
 
@@ -55,13 +56,16 @@
 			} 
 		}
 
-		private function get_session(){
+		public function get_session(){
+
 			return $_SESSION['login'];
 		}
 
 		public function user_logout(){
-			$_SESSION['login'] = false;
 			session_destroy();
+			session_start();
+			$_SESSION['login'] = false;
+			
 		}
 
 		public function fetch_data($table){
@@ -122,7 +126,13 @@
 			while($row = mysqli_fetch_assoc($query)){
 				$array[] = $row;
 			}
-			return $array;
+
+			if(empty($array)){
+				return false;
+			}else{
+				return $array;
+			}
+			
 		}
 
 

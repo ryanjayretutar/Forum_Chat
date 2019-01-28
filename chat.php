@@ -2,6 +2,8 @@
 	include "include/header.php";
 	include "config/user.php";
 	session_start();
+	// $_SESSION['login'] = false; 
+	$_SESSION['url'] = $_SERVER['REQUEST_URI']; 
 	
  ?>
  <body class="bg-cloud">
@@ -16,52 +18,25 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			            <ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Posts</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">Trending</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">My Threads</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="contact.html">Contact</a>
-			              </li>
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-						   
-			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Register</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="Logout">Logout</a>
-			              </li>
-			            
-						</ul>
-					     
-					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					    </form>
+			           <?php include "include/nav.php"; ?>
+					
 			           
 			          </div>
         </nav>
+
+        <?php 
+        	if($user->get_session()){
+
+        	         ?>
 			   
  	<div class="bg-light wrappers">
  		
 		  	
-		<div style=" min-width: 300px; max-width: 300px;height: 100%; overflow-y: hidden;">
+		<div style=" min-width: 300px; max-width: 300px;height: 90vh; overflow-y: hidden;">
 			
 	   
 		<nav id="sidebar">
-	        <div class="sidebar-header text-center">
+	        <div class="sidebar-header text-center" style="height: 9%;">
 	            <a class="navbar-brand" href="#">
 		           Forum Chat
 		          </a>
@@ -106,14 +81,20 @@
 	        </ul>
 		</nav>
 			</div> 
-		<div id="content" style="width: 100%; height: 100%; overflow-y: hidden;">
-			<div class="bg-belize text-light px-1 pt-1" style="position: fixed; z-index: 100; width: 100%; ">
-							<p class="lead pl-5"><?php echo $recipient; ?></p>
+		<div id="content" style="width: 100%; height: 90vh; overflow-y: hidden;">
+			<div class="bg-belize text-light px-1 pt-1" style="position: relative; z-index: 999; width: 100%; height: 9%;">
+
+				<?php 
+					$get_id = array("id"=>$_GET['id']);
+	            	$info = $user->fetch_data_byId("user_info",$get_id);
+
+				 ?>
+							<p class="lead pl-5"><?php echo $info['first_name'] . " " . $info['last_name']; ?></p>
 						</div>
-			<div class="container " id="mess" style="width: 100%; height:83%; overflow-y: auto;">
+			<div class="container bg-cloud pt-2" id="mess" style="width: 100%; height:75%; overflow-y: auto;">
 				
 				<div class="row">
-					<div class="col-lg-12 bg-cloud w-100">
+					<div class="col-lg-12 w-100">
 						<input type="hidden" id="userid" value="<?php echo $_GET['id']; ?>">
 						
 						<div id="messages"></div>
@@ -122,9 +103,9 @@
 				</div>
 			
 			</div>
-			<div class="container bg-primary p-0 mx-auto" style="height: 17%; width: 100%;" >
-				<div class="d-flex flex-row row-hl">
-					<textarea class="w-100 h-100 item-hl" rows="4" placeholder="Type your message here . . . " id="chat_message"></textarea>
+			<div class="container bg-primary p-0 mx-auto" style="height: 16%; width: 100%;" >
+				<div class="d-flex flex-row row-hl h-100">
+					<textarea class="w-100 item-hl"  placeholder="Type your message here . . . " id="chat_message"></textarea>
 					<button class="btn btn-outline-primary text-light" type="button" id="btn" style="width: 10%;" >Send</button>
 				</div>
 				
@@ -132,6 +113,26 @@
 			</div>
 		</div>
 	</div>
+		<?php } else{ ?>
+		<section id="error_found" class="h-100" style="background: url('https://gamingbolt.com/wp-content/uploads/2017/09/assassins-creed-origins-screenshots.jpg') center center no-repeat;" >
+			<div id="dark">
+				
+					<div class="container-fluid">
+						<div class="row m-5">
+							<div class="col-lg-12">
+								<h1 class="display-4">You must be logged in to continue</h1>
+								<p class="lead"><a href="login.php">Click here to login</a></p>
+							</div>
+							
+						</div>
+					</div>
+				
+				
+			</div>
+			
+		</section>
+			
+		<?php } ?>
 <script>
 	$(document).ready(function(){
 		showMessages();
@@ -149,9 +150,13 @@
 				);
 		}
 
+		function timer(){
+				setInterval(showMessages, 1000);
+			}
+
 
 		$("#btn").click(function(){
-				// timer();
+				timer();
 				if($("#chat_message").val() == ""){
 					alert("Enter your message first");
 				}else{

@@ -3,7 +3,7 @@
  ?>
 
  <?php 
-
+ 	session_start(); 
  	include_once "config/user.php";
  	extract($_POST);
  	if(isset($_POST['submit'])){
@@ -26,7 +26,7 @@
   ?>
  
 <body class="bg-cloud">
-	<div class="bg-light">
+	<div class="bg-light mb-5" >
 		 <div id="contents">
 		 	
 				<section id="cover">
@@ -54,45 +54,12 @@
 			          </button>
 
 			         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			            <ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-			                <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Latest Posts</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="news.html">Trending</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="about.html">My Threads</a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="contact.html">Contact</a>
-			              </li>
-						</ul>
-						<form class="form-inline my-2 my-lg-0">
-							<ul class="nav nav-tabs mr-auto">
-						   <li class="nav-item ">
-						   
-			                <a class="nav-link active" href="index.html">Login<span class="sr-only">(current)</span></a>
-			              </li>
-			              <li class="nav-item">
-			                <a class="nav-link" href="latest.html">Register</a>
-			              </li>
-			               <li class="nav-item">
-			                <a class="nav-link" href="Logout">Logout</a>
-			              </li>
-			            
-						</ul>
-					     
-					      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					    </form>
+			              <?php include "include/nav.php"; ?>
 			           
 			          </div>
 				</nav>
 
-				<form action="" method="post" id="register">
+				<form action="" method="post" id="register" enctype="multipart/form-data">
 			    <section class="register">
 			    	<div class="container-fluid mt-5">
 			    		<div class="row">
@@ -122,7 +89,7 @@
 			    					<div class="container">
 			    						<div class="row mx-5 mt-5">
 			    							<div class="col-lg-12">
-			    								
+			    									
 					    							<div class="form-group row p-2">
 													    <label for="username control-label" class="col-sm-2 col-form-label">Username</label>
 													    <div class="col-sm-6">

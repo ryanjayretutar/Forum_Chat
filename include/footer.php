@@ -1,3 +1,25 @@
+ <footer id="footer-main">
+				      <div class="container">
+				        <div class="row">
+				          <div class="col-sm-3">
+				              &copy; 2018 Pahiram.ph
+				              <p>Coded By&nbsp; <a href="">Ryan Jay C. Retutar</a></p>
+				          </div>
+				          <div class="col-sm-3">
+				            <ul class="list-unstyled">
+				              <li><a href=""></a>Home</li>
+				              <li><a href=""></a>What we do</li>
+				              <li><a href=""></a>About</li>
+				              <li><a href=""></a>Latest</li>
+				            </ul>
+				          </div>
+				          <div class="col-sm-3">
+				            <h6>Pahiram.ph Corp</h6>
+				            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi eveniet magni provident rerum minus a dolorem, nobis quia dolor, eius voluptates laudantium sequi consequuntur sit similique! Minima doloremque, ea at.</p>
+				          </div>
+				        </div>
+				      </div>
+				    </footer>
 	
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
